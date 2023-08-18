@@ -3,8 +3,10 @@
 import PropTypes from 'prop-types';
 import { ProfileCard } from 'components/profile/profile';
 import { StatsContainer } from 'components/stats/stats';
+import { FriendsList } from 'components/friends/friendslist';
+import { TransactionsList } from 'components/transactions/transactionslist';
 
-export const App = ({ data, dataStats }) => {
+export const App = ({ data, dataStats, dataFriends, dataTransactions }) => {
 	const { username, tag, location, avatar, stats } = data;
 	return (
 		<>
@@ -18,6 +20,8 @@ export const App = ({ data, dataStats }) => {
 				likes={stats.likes}
 			/>
 			<StatsContainer dataStats={dataStats} />
+			<FriendsList dataFriends={dataFriends} />
+			<TransactionsList dataList={dataTransactions} />
 		</>
 	);
 };
@@ -40,6 +44,28 @@ StatsContainer.propTypes = {
 			id: PropTypes.string.isRequired,
 			label: PropTypes.string.isRequired,
 			percentage: PropTypes.number.isRequired,
+		})
+	).isRequired,
+};
+
+FriendsList.propTypes = {
+	dataFriends: PropTypes.arrayOf(
+		PropTypes.exact({
+			avatar: PropTypes.string.isRequired,
+			name: PropTypes.string.isRequired,
+			isOnline: PropTypes.bool.isRequired,
+			id: PropTypes.number.isRequired,
+		})
+	).isRequired,
+};
+
+TransactionsList.propTypes = {
+	dataList: PropTypes.arrayOf(
+		PropTypes.exact({
+			id: PropTypes.string.isRequired,
+			type: PropTypes.string.isRequired,
+			amount: PropTypes.string.isRequired,
+			currency: PropTypes.string.isRequired,
 		})
 	).isRequired,
 };

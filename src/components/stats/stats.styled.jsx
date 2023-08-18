@@ -2,15 +2,16 @@
 
 import styled from 'styled-components';
 import { getRandomHexColor } from '../../utils/utils';
+import { colors } from '../../utils/constants';
 
 export const Statistics = styled.section`
 	margin-right: auto;
 	margin-left: auto;
 	margin-top: 100px;
 	width: 650px;
-	background-color: white;
+	background-color: ${colors.white};
 	border-radius: 10px;
-	box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.35);
+	box-shadow: 4px 4px 20px 0px ${colors.itemContainerShadow};
 	overflow: hidden;
 `;
 
@@ -40,13 +41,13 @@ export const ItemStat = styled.li`
 `;
 
 export const LabelItemStat = styled.span`
-	color: white;
+	color: ${colors.white};
 	font-size: 22px;
 	font-weight: 500;
 `;
 
 export const PercentageItemStat = styled.span`
-	color: white;
+	color: ${colors.white};
 	font-size: 28px;
 	font-weight: 600;
 `;

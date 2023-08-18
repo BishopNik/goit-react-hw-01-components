@@ -1,24 +1,25 @@
 /** @format */
 
-<table class='transaction-history'>
-	<thead>
-		<tr>
-			<th>Type</th>
-			<th>Amount</th>
-			<th>Currency</th>
-		</tr>
-	</thead>
+import PropTypes from 'prop-types';
+import { SpreadsheetTr, SpreadsheetTd } from './transactions.styled';
 
-	<tbody>
-		<tr>
-			<td>Invoice</td>
-			<td>125</td>
-			<td>USD</td>
-		</tr>
-		<tr>
-			<td>Withdrawal</td>
-			<td>85</td>
-			<td>USD</td>
-		</tr>
-	</tbody>
-</table>;
+export const Transactions = ({ data }) => {
+	return data.map(({ id, type, amount, currency }) => (
+		<SpreadsheetTr key={id}>
+			<SpreadsheetTd>{type}</SpreadsheetTd>
+			<SpreadsheetTd>{amount}</SpreadsheetTd>
+			<SpreadsheetTd>{currency}</SpreadsheetTd>
+		</SpreadsheetTr>
+	));
+};
+
+Transactions.propTypes = {
+	data: PropTypes.arrayOf(
+		PropTypes.exact({
+			id: PropTypes.string.isRequired,
+			type: PropTypes.string.isRequired,
+			amount: PropTypes.string.isRequired,
+			currency: PropTypes.string.isRequired,
+		})
+	).isRequired,
+};
