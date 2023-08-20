@@ -13,7 +13,7 @@ export const FriendsList = ({ dataFriends }) => {
 };
 
 FriendsList.propTypes = {
-	dataList: PropTypes.arrayOf(
+	dataFriends: PropTypes.arrayOf(
 		PropTypes.exact({
 			avatar: PropTypes.string.isRequired,
 			name: PropTypes.string.isRequired,

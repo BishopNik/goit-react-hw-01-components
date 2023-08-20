@@ -8,6 +8,7 @@ export const TransactionHistory = styled.table`
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 50px;
+	margin-bottom: 30px;
 	border-collapse: collapse;
 	border-radius: 8px;
 	box-shadow: 4px 4px 20px 0px ${colors.spreadsheetShadow};

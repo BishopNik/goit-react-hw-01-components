@@ -26,19 +26,18 @@ export const App = ({ data, dataStats, dataFriends, dataTransactions }) => {
 	);
 };
 
-ProfileCard.propTypes = {
-	username: PropTypes.string.isRequired,
-	tag: PropTypes.string.isRequired,
-	location: PropTypes.string.isRequired,
-	avatar: PropTypes.string.isRequired,
-	stats: PropTypes.exact({
-		followers: PropTypes.number.isRequired,
-		views: PropTypes.number.isRequired,
-		likes: PropTypes.number.isRequired,
-	}),
-};
-
-StatsContainer.propTypes = {
+App.propTypes = {
+	data: PropTypes.exact({
+		username: PropTypes.string.isRequired,
+		tag: PropTypes.string.isRequired,
+		location: PropTypes.string.isRequired,
+		avatar: PropTypes.string.isRequired,
+		stats: PropTypes.exact({
+			followers: PropTypes.number.isRequired,
+			views: PropTypes.number.isRequired,
+			likes: PropTypes.number.isRequired,
+		}),
+	}).isRequired,
 	dataStats: PropTypes.arrayOf(
 		PropTypes.exact({
 			id: PropTypes.string.isRequired,
@@ -46,9 +45,6 @@ StatsContainer.propTypes = {
 			percentage: PropTypes.number.isRequired,
 		})
 	).isRequired,
-};
-
-FriendsList.propTypes = {
 	dataFriends: PropTypes.arrayOf(
 		PropTypes.exact({
 			avatar: PropTypes.string.isRequired,
@@ -57,10 +53,7 @@ FriendsList.propTypes = {
 			id: PropTypes.number.isRequired,
 		})
 	).isRequired,
-};
-
-TransactionsList.propTypes = {
-	dataList: PropTypes.arrayOf(
+	dataTransactions: PropTypes.arrayOf(
 		PropTypes.exact({
 			id: PropTypes.string.isRequired,
 			type: PropTypes.string.isRequired,
