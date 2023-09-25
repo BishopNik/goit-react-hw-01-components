@@ -1,13 +1,18 @@
 /** @format */
 
-import PropTypes from 'prop-types';
 import { ProfileCard } from 'components/profile/profile';
 import { StatsContainer } from 'components/stats/stats';
 import { FriendsList } from 'components/friends/friendslist';
 import { TransactionsList } from 'components/transactions/transactionslist';
+import { FriendsListTag } from 'components/friends/friends.styled';
 
-export const App = ({ data, dataStats, dataFriends, dataTransactions }) => {
-	const { username, tag, location, avatar, stats } = data;
+import user from 'data/user';
+import statistics from 'data/stats';
+import friends from 'data/friends';
+import transactions from 'data/transactions';
+
+export const App = () => {
+	const { username, tag, location, avatar, stats } = user;
 	return (
 		<>
 			<ProfileCard
@@ -19,46 +24,11 @@ export const App = ({ data, dataStats, dataFriends, dataTransactions }) => {
 				views={stats.views}
 				likes={stats.likes}
 			/>
-			<StatsContainer dataStats={dataStats} />
-			<FriendsList dataFriends={dataFriends} />
-			<TransactionsList dataList={dataTransactions} />
+			<StatsContainer dataStats={statistics} title={'Upload stats'} />
+			<FriendsListTag>
+				<FriendsList dataFriends={friends} />
+			</FriendsListTag>
+			<TransactionsList dataList={transactions} />
 		</>
 	);
-};
-
-App.propTypes = {
-	data: PropTypes.exact({
-		username: PropTypes.string.isRequired,
-		tag: PropTypes.string.isRequired,
-		location: PropTypes.string.isRequired,
-		avatar: PropTypes.string.isRequired,
-		stats: PropTypes.exact({
-			followers: PropTypes.number.isRequired,
-			views: PropTypes.number.isRequired,
-			likes: PropTypes.number.isRequired,
-		}),
-	}).isRequired,
-	dataStats: PropTypes.arrayOf(
-		PropTypes.exact({
-			id: PropTypes.string.isRequired,
-			label: PropTypes.string.isRequired,
-			percentage: PropTypes.number.isRequired,
-		})
-	).isRequired,
-	dataFriends: PropTypes.arrayOf(
-		PropTypes.exact({
-			avatar: PropTypes.string.isRequired,
-			name: PropTypes.string.isRequired,
-			isOnline: PropTypes.bool.isRequired,
-			id: PropTypes.number.isRequired,
-		})
-	).isRequired,
-	dataTransactions: PropTypes.arrayOf(
-		PropTypes.exact({
-			id: PropTypes.string.isRequired,
-			type: PropTypes.string.isRequired,
-			amount: PropTypes.string.isRequired,
-			currency: PropTypes.string.isRequired,
-		})
-	).isRequired,
 };
